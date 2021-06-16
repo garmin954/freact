@@ -1,7 +1,5 @@
 //包含n个reducer函数的模块
-import {ADD_REMARKS, CHECK_REMARKS_ALL, CHECK_REMARKS_ITEM, DEL_REMARKS} from './actionType'
-import {combineReducers} from 'redux'
-
+import {ADD_REMARKS, CHECK_REMARKS_ALL, CHECK_REMARKS_ITEM, DEL_REMARKS, DEL_CHECK_REMARKS} from '../actionType'
 const remarksState = {
   remarks:[{
     value: 'Garmin',
@@ -14,13 +12,14 @@ const remarksState = {
 function remarks(state=remarksState,action){ //形参默认值
   let {remarks, allCheck, checkCount} = state;
   switch(action.type){
+    // 添加
     case ADD_REMARKS:
       state.remarks.push({
         value: action.value,
         check: false,
       })
       return state
-
+    // 删除单条记录
     case DEL_REMARKS:
       state.remarks = state.remarks.filter((item, index)=> {
         if (index !== action.value){
@@ -30,7 +29,19 @@ function remarks(state=remarksState,action){ //形参默认值
         }
       })
       return state
-
+    // 多选删除item
+    case DEL_CHECK_REMARKS:
+      remarks = remarks.filter((item, index)=> {
+        return !item.check;
+      })
+      checkCount = remarks.length;
+      allCheck = false;
+      return {
+        remarks,
+        checkCount,
+        allCheck
+      }
+    // 选中单挑记录
     case CHECK_REMARKS_ITEM:
       remarks[action.value].check = !remarks[action.value].check;
       checkCount = remarks.filter((item) => {
@@ -48,7 +59,7 @@ function remarks(state=remarksState,action){ //形参默认值
         checkCount,
         allCheck
       }
-
+    // 全选
     case CHECK_REMARKS_ALL:
       let check;
       if (!allCheck){
@@ -74,8 +85,4 @@ function remarks(state=remarksState,action){ //形参默认值
       return state
   }
 }
-
-
-export const finalReducer = combineReducers({
-  remarks
-})
+export default remarks;

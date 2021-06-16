@@ -6,13 +6,8 @@ import store from '../../store/index';
 import {
   addRemarksCreater,
   checkRemarksAllCreater,
-  checkRemarksItemCreater,
-  delRemarksCreater
+  delCheckRemarksCreater
 } from '../../store/actions';
-//
-// let unsubscribe = store.subscribe(() => {
-//     (new Remarks()).storeStateChange()
-// });
 
 export default class Remarks extends Component{
   constructor(props) {
@@ -27,11 +22,13 @@ export default class Remarks extends Component{
   }
 
   componentDidMount() {
-    console.log(store.getState());
     this.storeStateChange()
-    store.subscribe(() => {
+    // subscribe可以监听redux state的变化, 返回一个函数可以结束监听
+    let unsubscribe = store.subscribe(() => {
       this.storeStateChange()
     });
+
+    // unsubscribe(); // 结束监听
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -51,14 +48,11 @@ export default class Remarks extends Component{
       this.addValRef.current.value = ''
     }
   }
+  // 获取state
   storeStateChange(){
+    // store.getState可以获取redux的state
     const {remarks} = store.getState();
     this.setState(remarks)
-  }
-
-  // 选中item
-  handleCheckState(val){
-    store.dispatch(checkRemarksItemCreater(val))
   }
 
   // 全选
@@ -66,32 +60,14 @@ export default class Remarks extends Component{
     store.dispatch(checkRemarksAllCreater())
   }
 
-  // 删除item
-  handleDeleteItem(key){
-    if (key){
-      store.dispatch(delRemarksCreater(key))
-    }
-  }
 
   // 多选删除item
   handleCheckDeleteItem(){
-    let checkCount = this.state.checkCount;
-    if (checkCount <= 0){
+    if (this.state.checkCount <= 0){
       alert('No items selected to be deleted！');
       return ;
     }
-
-    let remarks = this.state.remarks;
-    remarks = remarks.filter((item, index)=> {
-      return !item.check;
-    })
-    checkCount = remarks.length;
-    const allCheck = false;
-    this.setState({
-      remarks,
-      checkCount,
-      allCheck
-    })
+    store.dispatch(delCheckRemarksCreater())
   }
 
   render() {

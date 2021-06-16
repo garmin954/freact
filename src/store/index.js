@@ -1,5 +1,5 @@
 import {createStore} from 'redux'
-import {finalReducer } from './reducer'
+import {finalReducer} from './reducer/index'
 
 //生成store对象
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
