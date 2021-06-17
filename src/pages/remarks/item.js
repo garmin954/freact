@@ -3,7 +3,7 @@ import React,{Component, } from 'react';
 // import $styles from './item.module.scss';
 import PropTypes from 'prop-types';
 import store from "../../store";
-import {checkRemarksItemCreater, delRemarksCreater} from "../../store/actions";
+import {checkRemarksItemCreater, delRemarksCreater} from "../../store/actions/remarks";
 
 export default class RemarksItem extends Component{
 

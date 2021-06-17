@@ -3,11 +3,12 @@ import styles from './index.module.scss';
 import classNames from "classnames";
 import RemarksItem from "./item";
 import store from '../../store/index';
+import Back from "./back";
 import {
   addRemarksCreater,
   checkRemarksAllCreater,
   delCheckRemarksCreater
-} from '../../store/actions';
+} from '../../store/actions/remarks';
 
 export default class Remarks extends Component{
   constructor(props) {
@@ -73,50 +74,53 @@ export default class Remarks extends Component{
   render() {
     const {state:{checkCount, remarks, allCheck}, addValRef} = this
     return (
-      <div className={classNames({'card': true, [styles['gm-card']]: true})}>
-        <div className='card-header '>
-          <div className=' input-group'>
-            <input
-              ref={addValRef}
-              onKeyDown={(e)=> e.keyCode === 13 && this.addRemarks()}
-              type="text"
-              className='form-control'
-            />
-            <button
-              className='btn link-light btn-primary btn-outline-secondary'
-              type="button"
-              onClick={()=>this.addRemarks()}
-            >
-              submit
-            </button>
+      <div>
+        <Back />
+        <div className={classNames({'card': true, [styles['gm-card']]: true})}>
+          <div className='card-header '>
+            <div className=' input-group'>
+              <input
+                ref={addValRef}
+                onKeyDown={(e)=> e.keyCode === 13 && this.addRemarks()}
+                type="text"
+                className='form-control'
+              />
+              <button
+                className='btn link-light btn-primary btn-outline-secondary'
+                type="button"
+                onClick={()=>this.addRemarks()}
+              >
+                submit
+              </button>
+            </div>
           </div>
-        </div>
-        <div className='card-body'>
-          {remarks.length > 0 ? (
-            <ul className='list-group text-start'>
-              {
-                remarks.map((item, index)=>{
-                  return <RemarksItem
-                            key={index}
-                            value={item.value}
-                            index={index}
-                            check={item.check}
-                          />
-                })
-              }
-            </ul>
-          ) : (<span className='text-center'> 暂时没有记录 </span>)}
+          <div className='card-body'>
+            {remarks.length > 0 ? (
+              <ul className='list-group text-start'>
+                {
+                  remarks.map((item, index)=>{
+                    return <RemarksItem
+                      key={index}
+                      value={item.value}
+                      index={index}
+                      check={item.check}
+                    />
+                  })
+                }
+              </ul>
+            ) : (<span className='text-center'> 暂时没有记录 </span>)}
 
-        </div>
-        <div className='card-footer d-flex justify-content-between align-items-center'>
-          <div className='col-3 float-start'>
-            <input type="checkbox" checked={allCheck} onChange={()=>this.handleCheckAll()} className='form-check-input' value=""  id='selectAllTarget'/>
-            <label className='form-check-label ms-1' htmlFor="selectAllTarget" >
-              全选
-            </label>
           </div>
-          <span className='text-info col-3 text-center'>选中了{checkCount}个</span>
-          <button className='btn btn-danger col-3 float-end' onClick={()=>this.handleCheckDeleteItem()}> delete </button>
+          <div className='card-footer d-flex justify-content-between align-items-center'>
+            <div className='col-3 float-start'>
+              <input type="checkbox" checked={allCheck} onChange={()=>this.handleCheckAll()} className='form-check-input' value=""  id='selectAllTarget'/>
+              <label className='form-check-label ms-1' htmlFor="selectAllTarget" >
+                全选
+              </label>
+            </div>
+            <span className='text-info col-3 text-center'>选中了{checkCount}个</span>
+            <button className='btn btn-danger col-3 float-end' onClick={()=>this.handleCheckDeleteItem()}> delete </button>
+          </div>
         </div>
       </div>
     )
