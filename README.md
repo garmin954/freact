@@ -1,12 +1,12 @@
 # Garmin learns React process and knowledge points
 
 ## create react app
-1. 安装create-react-app
+**1. 安装create-react-app**
 `> npm install -g create-react-app`
-2. 创建项目
+**2. 创建项目**
 `> create-react-app project`
 ## 创建一个页面
-1. 在`src`目录下创建`pages`目录，pages下创建一个`index.js`文件,具体代码结构如下：
+**1. 在`src`目录下创建`pages`目录，pages下创建一个`index.js`文件,具体代码结构如下：**
 ``` javascript
 import React,{Component} from 'react';
 // 创建一个Index类组件，继承 React的Component组件类的方法属性
@@ -31,18 +31,19 @@ export default class Index extends Component{
 ```
 ### jsx语法
 > jsx语法React.createElement 三个参数 元素类型（div,img,span...）,元素属性（value, src ...）， 子元素. 注意没有`text`类型
-1. 普通属性值把引号换成大括号即可：
+
+**1. 普通属性值把引号换成大括号即可：**
 ```
 <img src={srcPath} alt={altTitle}/>
 ```
-* 像class的话vue里面是`:class={{obj}}`,在react里是不行的需要安装`classname`插件 `class={className({obj})}`
+* 像class的话vue里面是`:class={{obj}}`,在react里是不行的需要安装`classname`插件 `class={className({obj})}`*
 
-2. 事件属性 和原生的使用差不多，差别是react的事件名是驼峰式的`onChange, onClick`
+**2. 事件属性 和原生的使用差不多，差别是react的事件名是驼峰式的`onChange, onClick`**
 * 事件里直接调用方法是不正确的`this`会丢失指向 解决方法：
     * 使用箭头函数
-    * 在构造函数里对方法进行this 绑定， `this.clickActionOperating = this.clickActionOperating.bind(this)`
+    * 在构造函数里对方法进行this 绑定， `this.clickActionOperating = this.clickActionOperating.bind(this)`**
     
-3. 判断可以使用三元运算符
+**3. 判断可以使用三元运算符**
 ```
 <div>
   {
@@ -51,7 +52,7 @@ export default class Index extends Component{
 </div>
 ```    
 
-4. 循环可以利用`map`会返回一个新数组实现
+**4. 循环可以利用`map`会返回一个新数组实现**
 ```
 <div>
   {
