@@ -113,6 +113,7 @@ export default class Index extends Component{
 * 备注列表
 * 添加备注
 * 删除备注
+
 ** 2. 实现**
 ```
 import React,{Component, createRef} from 'react';
@@ -224,6 +225,7 @@ import RemarksItem from "./item";
 .........
 ```
 **子组件**
+* 父子传值还是用到props，想要约束props类型需要引入`npm i prop-types`
 ```
 import React,{Component} from 'react';
 import propTypes from 'prop-types'
