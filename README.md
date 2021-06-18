@@ -109,12 +109,13 @@ export default class Index extends Component{
 ```
 ### 写一个小案例
 > 根据上面的知识点我们足以写一个备注列表的小组件了。
-** 1. 需求 功能**
+
+**1. 需求 功能**
 * 备注列表
 * 添加备注
 * 删除备注
 
-** 2. 实现**
+**2. 实现**
 ```
 import React,{Component, createRef} from 'react';
 // 创建一个Index类组件，继承 React的Component组件类的方法属性
@@ -197,8 +198,11 @@ export default class Index extends Component{
   }
 }
 ```
-** 3. 组件拆分**
+
+**3. 组件拆分**
+
 > 假如item比较复杂我们可以把item拆分出来。 创建RemarkItem组件
+>
 **父组件**
 ```
 import RemarksItem from "./item";
@@ -224,6 +228,7 @@ import RemarksItem from "./item";
 </div>
 .........
 ```
+
 **子组件**
 * 父子传值还是用到props，想要约束props类型需要引入`npm i prop-types`
 ```
