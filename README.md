@@ -113,6 +113,7 @@ export default class Index extends Component{
 * 备注列表
 * 添加备注
 * 删除备注
+** 2. 实现**
 ```
 import React,{Component, createRef} from 'react';
 // 创建一个Index类组件，继承 React的Component组件类的方法属性
@@ -195,6 +196,67 @@ export default class Index extends Component{
   }
 }
 ```
+** 3. 组件拆分**
+> 假如item比较复杂我们可以把item拆分出来。 创建RemarkItem组件
+**父组件**
+```
+import RemarksItem from "./item";
+...........
+<div className="card_body">
+  {remarks.length>0 ? (
+    <ul className='list-group'>
+      {
+        remarks.map((item, index)=>(
+          <RemarksItem
+            key={index}
+            value={item}
+            id={index}
+            onDelete={this.handleDelItem.bind(this)} // 一定要绑定this不然handleDelItem方法里获取不到state
+          />
+        ))
+      }
+    </ul>
+  ) : (
+    <div className='text-center'> No data </div>
+  )}
+
+</div>
+.........
+```
+**子组件**
+```
+import React,{Component} from 'react';
+import propTypes from 'prop-types'
+
+export default class Item extends Component{
+
+  // 约束props
+  static propsTypes = {
+    id: propTypes.number.isRequired,
+    value: propTypes.string.isRequired,
+    onDelete: propTypes.func.isRequired,
+  }
+
+  // 默认props
+  static defaultProps = {
+    id: 0,
+    value: 'empty'
+  }
+
+  render() {
+    const {props:{id, value}} = this;
+    return (
+      <li className='list-group-item'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <span className='text-start'>{value}</span>
+          <button className='btn btn-danger btn-sm' onClick={()=> this.props.onDelete(id)}>del</button>
+        </div>
+      </li>
+    )
+  }
+}
+```
+> 好了，完成一个小案例！
 
 ## 使用状态管理器
 > 安装`npm install --save react-redux`
