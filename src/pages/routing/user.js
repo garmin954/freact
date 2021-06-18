@@ -3,9 +3,10 @@ import classNames from "classnames";
 import store from "../../store";
 import {getUserInfo} from "../../store/actions/user";
 import Cookies from 'js-cookie';
+import {connect} from 'react-redux'
 // import $styles from './user.module.scss';
 
-export default class User extends Component{
+ class User extends Component{
 
   static propsTypes = {
 
@@ -14,12 +15,16 @@ export default class User extends Component{
   constructor(props) {
     super(props);
     this.state = {}
+    console.log('this.props====>', this.state);
+
   }
 
   async componentDidMount() {
     await store.dispatch(getUserInfo())
-    const {user} = store.getState();
-    this.setState(user)
+    // const {user} = store.getState();
+    // this.setState(user)
+    console.log('this.props====>', this.state);
+    console.log('this.props====>', this.props);
   }
 
   handleLogout(){
@@ -36,7 +41,7 @@ export default class User extends Component{
         <div className='list-group'>
           {
             Object.keys(this.state).map(index=>(
-              <div className='list-group-item text-start'>
+              <div className='list-group-item text-start' key={index}>
                 <div className='text-primary d-inline'>{index}: </div>{this.state[index]}
               </div>
             ))
@@ -49,3 +54,10 @@ export default class User extends Component{
     )
   }
 }
+
+
+const mapStateToProps = (state) => ({
+  goods: state
+})
+
+export default connect(mapStateToProps)(User)

@@ -8,7 +8,7 @@ export default (loader)=> lazy(() => {
       setTimeout(() => {
         console.log('传送');
         resolve(AsyncComponent);
-      }, 1000);
+      }, 10);
     });
   });
 });

@@ -1,4 +1,4 @@
-import {LOGIN_USER, GET_USER_INFO} from '../actionType'
+import {LOGIN_USER, GET_USER_INFO, IS_USER_LOGIN} from '../actionType'
 import request from "../../utils/request";
 import Cookies from 'js-cookie'
 import store from "../index";
@@ -33,3 +33,7 @@ export const getUserInfo = () => {
     })
   }
 }
+
+export const loginState = () =>({
+  type: IS_USER_LOGIN
+})

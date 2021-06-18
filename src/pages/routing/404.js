@@ -11,9 +11,14 @@ export default class NotFind extends Component{
   constructor(props) {
     super(props);
 
+
     this.state = {
 
     }
+  }
+
+  componentDidMount() {
+    console.log('this===>', this)
   }
 
   render() {

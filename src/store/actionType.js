@@ -6,6 +6,7 @@ export const CHECK_REMARKS_ALL = 'check_remarks_all'
 
 export const LOGIN_USER = 'login_user';
 export const GET_USER_INFO = 'get_user_info';
+export const IS_USER_LOGIN = 'is_user_login';
 
 
 

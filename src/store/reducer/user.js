@@ -1,4 +1,7 @@
-import {LOGIN_USER, GET_USER_INFO} from '../actionType';
+import {LOGIN_USER, GET_USER_INFO, IS_USER_LOGIN} from '../actionType';
+import Cookies from 'js-cookie';
+import {combineReducers} from "redux";
+import remarks from "./remarks";
 const userState = {};
 function user(state=userState, action){
   switch (action.type){
@@ -13,4 +16,21 @@ function user(state=userState, action){
 
   return state;
 }
-export default user;
+
+function login_state(state = true, action){
+  switch (action.type){
+    case IS_USER_LOGIN:
+      if (Cookies.get('_token')){
+        return true;
+      }
+      return false;
+      break;
+    default:
+      return false;
+      break;
+  }
+}
+export {
+  login_state,
+  user
+};
