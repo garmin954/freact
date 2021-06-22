@@ -265,7 +265,11 @@ export default class Item extends Component{
 ```
 > 好了，完成一个小案例！
 
-## 使用状态管理器
+## 组件传值
+### 多层传值 context
+### 同级间传递 context
+
+
 > 假如两组件嵌套很深或者在同级怎么同时维护一个状态？ 显然props是不满足了！`redux` 就运用而生了。安装`npm install --save react-redux`
 
 ### 

@@ -40,9 +40,9 @@ import {connect} from 'react-redux'
         <h3>User</h3>
         <div className='list-group'>
           {
-            Object.keys(this.state).map(index=>(
+            Object.keys(this.props.user).map(index=>(
               <div className='list-group-item text-start' key={index}>
-                <div className='text-primary d-inline'>{index}: </div>{this.state[index]}
+                <div className='text-primary d-inline'>{index}: </div>{this.props.user[index]}
               </div>
             ))
           }
@@ -57,7 +57,7 @@ import {connect} from 'react-redux'
 
 
 const mapStateToProps = (state) => ({
-  goods: state
+  user: state.user
 })
 
 export default connect(mapStateToProps)(User)

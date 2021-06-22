@@ -11,10 +11,10 @@ import MainLayout from "./pages/router";
 function App() {
   return (
     <div className="App">
-      <Remarks/>
-        {/*<Hash>*/}
-        {/*    <Route path="/" component={MainLayout}></Route>*/}
-        {/*</Hash>*/}
+      {/*<Remarks/>*/}
+        <Hash>
+            <Route path="/" component={MainLayout}></Route>
+        </Hash>
     </div>
   );
 }
