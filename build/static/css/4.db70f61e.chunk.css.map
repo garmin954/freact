@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/pages/login/index.module.scss"],"names":[],"mappings":"AAAA,wBACE,eAAgB","file":"4.db70f61e.chunk.css","sourcesContent":[".login-box{\r\n  max-width: 500px;\r\n}\r\n"]}
