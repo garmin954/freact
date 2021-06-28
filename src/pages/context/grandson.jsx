@@ -1,6 +1,6 @@
-import React,{Component} from 'react';
+import React,{Component, Consumer} from 'react';
 import classNames from "classnames";
-
+import {MyContext} from './index'
 export default class Grandson extends Component{
 
   static propsTypes = {
@@ -11,14 +11,19 @@ export default class Grandson extends Component{
     super(props);
 
     this.state = {
-
     }
+  }
+
+  componentDidMount() {
+    console.log(this.props);
   }
 
   render() {
     const {state:{}} = this;
     return (
-      <div className={classNames()}> Grandson </div>
+      <MyContext.Consumer>
+        {value=>console.log("context====>",value)}
+      </MyContext.Consumer>
     )
   }
 }

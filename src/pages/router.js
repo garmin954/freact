@@ -13,7 +13,6 @@ export default class MainLayout extends Component {
   render() {
     return (
       <div className="main">
-        <Suspense fallback={'loading...'}>
           <Switch>
             <Route path="/" exact render={() => (<Redirect to="/guide"/>)}/>
             <Route path="/guide" component={lazy(import("./routing/guide"))}></Route>
@@ -23,7 +22,6 @@ export default class MainLayout extends Component {
             <Route path="/404" component={lazy(import("./routing/404"))}></Route>
             <Route render={() => (<Redirect to="/404"/>)}></Route>
           </Switch>
-        </Suspense>
       </div>
     )
   }

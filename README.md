@@ -7,7 +7,7 @@
 `> create-react-app project`
 ## 创建一个页面
 ### 初识组件结构
-**1. 在`src`目录下创建`pages`目录，pages下创建一个`index.js`文件,具体代码结构如下：**
+**1. 在`src`目录下创建`pages`目录，pages下创建一个`index.jsx`文件,具体代码结构如下：**
 ``` javascript
 import React,{Component} from 'react';
 // 创建一个Index类组件，继承 React的Component组件类的方法属性

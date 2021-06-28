@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useHistory, HashRouter} from 'react-router-dom'
+import { HashRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import store from "../store";
 import {loginState} from "../store/actions/user";

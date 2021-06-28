@@ -1,30 +1,38 @@
-import React,{Component, createRef} from 'react';
-import RemarksItem from "./item";
+import React,{Component, createContext} from 'react';
+import classNames from "classnames";
+import MarkDown from "../../components/MarkDown";
+import Son from "./son";
+export const MyContext = createContext('Garmin')
+
 export default class Index extends Component{
-  // 构造函数
-  constructor(props) {
-    // 继承
-    super(props);
-    // 变量
-    this.state = {
-      target: 'Garmin'
-    }
-    // 添加一个ref 用来获取input元素
-    this.inputRef = createRef();
+
+  static propsTypes = {
+
   }
 
-  // 渲染视图方法，jsx语法
+  constructor(props) {
+    super(props);
+
+
+    this.state = {
+      name: 'Garmin'
+    }
+  }
+
   render() {
-    const {state:{remarks}, inputRef} = this;
+    const {state:{name}} = this;
     return (
-      <div className='card'>
-        <div className="card-header">
+      <>
+        <MyContext.Provider value={name}>
+          <div className={classNames()}>
+            <Son />
+          </div>
+        </MyContext.Provider>
 
-        </div>
-        <div className="card_body">
-
-        </div>
-      </div>
+        <MarkDown
+            sourcePos={true}
+            sources={require(`!!raw-loader!./index.md`).default}/>
+      </>
     )
   }
 }
